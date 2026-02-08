@@ -27,7 +27,7 @@
 ## 项目结构
 
 ```
-recorder/
+recorder/   录音机/
 ├── main.cpp                 # 应用入口，权限处理和设置注册
 ├── AppSettings.h             # 应用设置类（QSettings 持久化）
 ├── SavePathSettings.qml      # 保存路径设置界面
@@ -162,7 +162,7 @@ cmake --build build
   - swscale-7.dll
 - **MinGW 运行时 DLL**：
   - libgcc_s_seh-1.dll
-  - libstdc++-6.dll
+  - libstdc++-6.dll   - libstdc -6.dll
   - libwinpthread-1.dll
 - **插件目录**：
   - `platforms/` - 平台插件（qwindows.dll）
