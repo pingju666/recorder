@@ -1,3 +1,5 @@
+本项目基于 Qt 样例二次开发
+
 # Qt 媒体录制器
 
 一个基于 Qt 6.8.3 和 FFmpeg 的多媒体录制应用程序，支持摄像头、屏幕和窗口录制。
@@ -328,7 +330,3 @@ QML StyleRectangle: The current style does not support customization of this con
 ## 致谢
 
 感谢所有为 Qt 多媒体框架做出贡献的开发者！
-
----
-
-**最后更新时间**：2025年3月
