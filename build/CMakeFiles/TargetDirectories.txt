@@ -1,0 +1,10 @@
+E:/Qt/project/recorder/build/CMakeFiles/recorder.dir
+E:/Qt/project/recorder/build/CMakeFiles/recorder_qmlimportscan.dir
+E:/Qt/project/recorder/build/CMakeFiles/edit_cache.dir
+E:/Qt/project/recorder/build/CMakeFiles/rebuild_cache.dir
+E:/Qt/project/recorder/build/CMakeFiles/list_install_components.dir
+E:/Qt/project/recorder/build/CMakeFiles/install.dir
+E:/Qt/project/recorder/build/CMakeFiles/install/local.dir
+E:/Qt/project/recorder/build/CMakeFiles/install/strip.dir
+E:/Qt/project/recorder/build/CMakeFiles/recorder_autogen_timestamp_deps.dir
+E:/Qt/project/recorder/build/CMakeFiles/recorder_autogen.dir
