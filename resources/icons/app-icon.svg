@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0078D4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#005A9E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#004578;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Icon gradient -->
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#E0F0FF;stop-opacity:0.9" />
+    </linearGradient>
+
+    <!-- Red accent for record button -->
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF4D5A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E81123;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+
+    <!-- Glow filter for record button -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Rounded rectangle background -->
+  <rect x="16" y="16" width="224" height="224" rx="44" ry="44"
+        fill="url(#bgGradient)" filter="url(#shadow)"/>
+
+  <!-- Inner subtle border/highlight -->
+  <rect x="18" y="18" width="220" height="220" rx="42" ry="42"
+        fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+
+  <!-- Video camera icon (body) -->
+  <g transform="translate(128, 110)" filter="url(#glow)">
+    <!-- Camera body -->
+    <rect x="-40" y="-25" width="80" height="55" rx="8" ry="8"
+          fill="url(#iconGradient)"/>
+
+    <!-- Camera lens outer ring -->
+    <circle cx="0" cy="2" r="22" fill="none" stroke="url(#iconGradient)" stroke-width="4"/>
+    
+    <!-- Camera lens inner circle -->
+    <circle cx="0" cy="2" r="14" fill="url(#bgGradient)"/>
+
+    <!-- Camera lens center dot -->
+    <circle cx="0" cy="2" r="6" fill="rgba(255,255,255,0.7)"/>
+
+    <!-- Camera viewfinder (top) -->
+    <rect x="-14" y="-21" width="28" height="6" rx="2" ry="2"
+          fill="url(#bgGradient)"/>
+
+    <!-- Camera right protrusion (lens barrel) -->
+    <path d="M 40 -10 L 54 -18 L 54 22 L 40 14 Z"
+          fill="url(#iconGradient)"/>
+  </g>
+
+  <!-- Record button indicator (red circle at bottom) -->
+  <g transform="translate(128, 178)">
+    <!-- Outer ring glow effect -->
+    <circle cx="0" cy="0" r="20" fill="none" stroke="rgba(232,17,35,0.3)" stroke-width="3">
+      <animate attributeName="r" values="18;24;18" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Record button background -->
+    <circle cx="0" cy="0" r="16" fill="url(#redGradient)"/>
+
+    <!-- Record button inner highlight -->
+    <circle cx="-4" cy="-4" r="8" fill="rgba(255,255,255,0.2)"/>
+
+    <!-- Record symbol (white circle) -->
+    <circle cx="0" cy="0" r="8" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Subtle decorative elements (top left corner) -->
+  <circle cx="48" cy="48" r="3" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="60" cy="48" r="2" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="48" cy="60" r="2" fill="rgba(255,255,255,0.15)"/>
+</svg>

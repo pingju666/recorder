@@ -1,2 +1,3 @@
 module CustomStyles
 singleton Style 1.0 Style.qml
+AppIcon 1.0 AppIcon.qml
