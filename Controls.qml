@@ -82,11 +82,8 @@ Row {
                 anchors.fill: parent
                 radius: Style.radiusMedium
 
-                gradient: capturesBtn.hovered || root.capturesVisible ? Gradient {
-                    GradientStop { position: 0.0; color: Style.primaryHover }
-                    GradientStop { position: 1.0; color: Style.primary }
-                } : Gradient {
-                    GradientStop { position: 0.0; color: Style.primaryLight }
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: capturesBtn.hovered || root.capturesVisible ? Style.primaryHover : Style.primaryLight }
                     GradientStop { position: 1.0; color: Style.primary }
                 }
 
@@ -95,20 +92,18 @@ Row {
 
                 Behavior on border.color { ColorAnimation { duration: Style.animationFast } }
 
-                // Shadow
                 layer.enabled: true
                 layer.effect: Item {
                     Rectangle {
                         anchors.fill: parent
                         anchors.margins: -2
                         radius: parent.radius + 2
-                        color: "transparent"
-                        opacity: 0.12
                         color: "#000000"
+                        opacity: 0.12
                     }
                 }
 
-                Behavior on gradient { ColorAnimation { duration: Style.animationFast } }
+                Behavior on opacity { NumberAnimation { duration: Style.animationFast } }
             }
 
             contentItem: Text {
@@ -146,16 +141,14 @@ Row {
                 border.color: root.settingsVisible ? Style.primary : Style.borderDefault
                 border.width: root.settingsVisible ? 1.5 : 1
 
-                // Shadow for elevation
                 layer.enabled: true
                 layer.effect: Item {
                     Rectangle {
                         anchors.fill: parent
                         anchors.margins: -1
                         radius: parent.radius + 1
-                        color: "transparent"
-                        opacity: 0.08
                         color: "#000000"
+                        opacity: 0.08
                     }
                 }
 

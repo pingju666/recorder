@@ -49,24 +49,18 @@ Rectangle {
                 anchors.fill: parent
                 anchors.margins: -2
                 radius: parent.radius + 2
-                color: "transparent"
-                z: -1
-
-                // Soft shadow
-                opacity: 0.15
                 color: "#000000"
+                z: -1
+                opacity: 0.15
             }
 
             Rectangle {
                 anchors.fill: parent
                 anchors.margins: -1
                 radius: parent.radius + 1
-                color: "transparent"
-                z: -1
-
-                // Tighter shadow for depth
-                opacity: 0.08
                 color: "#000000"
+                z: -1
+                opacity: 0.08
             }
         }
     }
