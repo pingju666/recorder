@@ -1,4 +1,4 @@
-// Copyright (C) 2021 The Qt Company Ltd.
+// 版权所有 (C) 2021 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
@@ -6,7 +6,7 @@ import QtQuick
 Rectangle {
     id: root
 
-    // ========== Properties ==========
+    // ========== 属性定义 ==========
     property bool hovered: false
     property bool pressed: false
     property color baseColor: Style.surfaceElevated
@@ -18,24 +18,24 @@ Rectangle {
     property color gradientBottom: Style.buttonGradientEnd
     property real targetOpacity: 0.95
 
-    // ========== Appearance ==========
+    // ========== 外观设置 ==========
     opacity: pressed ? 0.9 : (hovered ? 1.0 : targetOpacity)
     radius: cornerRadius
     border.color: pressed ? Style.primaryHover : (hovered ? Style.borderHover : borderColor)
     border.width: borderWidth
 
-    // ========== Gradient ==========
+    // ========== 渐变效果 ==========
     gradient: useGradient ? Gradient {
         GradientStop { position: 0.0; color: pressed ? Qt.darker(gradientBottom, 1.1) : gradientTop }
         GradientStop { position: 1.0; color: pressed ? Qt.darker(gradientBottom, 1.2) : gradientBottom }
     } : null
 
-    // Default solid color when not using gradient
+    // 不使用渐变时的纯色背景
     color: !useGradient ? (pressed ? Qt.darker(baseColor, 1.05) :
                             hovered ? Qt.lighter(baseColor, 1.02) :
                             baseColor) : "transparent"
 
-    // ========== Shadow Layer ==========
+    // ========== 阴影层 ==========
     layer.enabled: true
     layer.effect: Item {
         Rectangle {
@@ -44,7 +44,7 @@ Rectangle {
             color: "transparent"
             border.color: "transparent"
 
-            // Drop shadow effect using multiple rectangles
+            // 使用多个矩形实现阴影效果
             Rectangle {
                 anchors.fill: parent
                 anchors.margins: -2
@@ -65,7 +65,7 @@ Rectangle {
         }
     }
 
-    // ========== Smooth Transitions ==========
+    // ========== 平滑过渡动画 ==========
     Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutCubic } }
     Behavior on border.color { ColorAnimation { duration: Style.animationFast } }
     Behavior on color { ColorAnimation { duration: Style.animationFast } }

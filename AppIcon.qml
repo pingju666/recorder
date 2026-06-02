@@ -1,4 +1,4 @@
-// AppIcon.qml - Application icon component
+// AppIcon.qml - 应用程序图标组件
 import QtQuick
 
 Item {
@@ -7,7 +7,7 @@ Item {
     width: iconSize
     height: iconSize
 
-    // Icon background with gradient
+    // 图标背景（带渐变效果）
     Rectangle {
         id: iconBg
         anchors.centerIn: parent
@@ -21,15 +21,15 @@ Item {
             GradientStop { position: 1.0; color: Style.primaryDark }
         }
 
-        // Subtle border
+        // 细边框
         border.color: "rgba(255, 255, 255, 0.2)"
         border.width: 1
 
-        // Shadow effect
+        // 阴影效果
         layer.enabled: true
     }
 
-    // Camera icon (simplified vector representation)
+    // 相机图标（简化的矢量表示）
     Canvas {
         id: canvas
         anchors.centerIn: parent
@@ -40,11 +40,11 @@ Item {
             var ctx = getContext("2d")
             ctx.clearRect(0, 0, width, height)
 
-            // Draw camera body (white)
+            // 绘制相机机身（白色）
             ctx.fillStyle = "#FFFFFF"
             ctx.globalAlpha = 0.95
 
-            // Main body rectangle with rounded corners
+            // 主机身矩形（带圆角）
             var bodyW = width * 0.7
             var bodyH = height * 0.55
             var bodyX = (width - bodyW) / 2
@@ -54,26 +54,26 @@ Item {
             ctx.roundRect(bodyX, bodyY, bodyW, bodyH, 4)
             ctx.fill()
 
-            // Lens outer ring
+            // 镜头外圈
             ctx.strokeStyle = "#FFFFFF"
             ctx.lineWidth = 3
             ctx.beginPath()
             ctx.arc(width / 2, bodyY + bodyH * 0.55, bodyH * 0.4, 0, Math.PI * 2)
             ctx.stroke()
 
-            // Lens inner circle
+            // 镜头内圈
             ctx.fillStyle = Style.primaryDark
             ctx.beginPath()
             ctx.arc(width / 2, bodyY + bodyH * 0.55, bodyH * 0.25, 0, Math.PI * 2)
             ctx.fill()
 
-            // Lens center highlight
+            // 镜头中心高光
             ctx.fillStyle = "rgba(255, 255, 255, 0.6)"
             ctx.beginPath()
             ctx.arc(width / 2 - 2, bodyY + bodyH * 0.5, bodyH * 0.08, 0, Math.PI * 2)
             ctx.fill()
 
-            // Viewfinder (top)
+            // 取景器（顶部）
             ctx.fillStyle = Style.primaryDark
             var vfW = bodyW * 0.35
             var vfH = bodyH * 0.12
@@ -81,7 +81,7 @@ Item {
             ctx.roundRect((width - vfW) / 2, bodyY - vfH * 0.3, vfW, vfH, 2)
             ctx.fill()
 
-            // Lens barrel (right side)
+            // 镜头筒（右侧）
             ctx.fillStyle = "#FFFFFF"
             ctx.beginPath()
             ctx.moveTo(bodyX + bodyW, bodyY + bodyH * 0.15)
@@ -93,7 +93,7 @@ Item {
         }
     }
 
-    // Record indicator dot (bottom of icon)
+    // 录制指示点（图标底部）
     Rectangle {
         id: recordDot
         anchors {
@@ -110,7 +110,7 @@ Item {
             GradientStop { position: 1.0; color: Style.accent }
         }
 
-        // Inner white circle
+        // 内部白色圆圈
         Rectangle {
             anchors.centerIn: parent
             width: parent.width * 0.5
@@ -119,7 +119,7 @@ Item {
             color: "#FFFFFF"
         }
 
-        // Pulse animation for attention
+        // 脉冲动画以引起注意
         SequentialAnimation on scale {
             running: true
             loops: Animation.Infinite

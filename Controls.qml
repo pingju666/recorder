@@ -1,4 +1,4 @@
-// Copyright (C) 2021 The Qt Company Ltd.
+// 版权所有 (C) 2021 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
@@ -20,7 +20,7 @@ Row {
 
     spacing: Style.interSpacing * Style.ratio
 
-    // ========== Left Section: Input Controls ==========
+    // ========== 左侧区域：输入控制 ==========
     Column {
         id: inputControls
         spacing: Style.intraSpacing
@@ -29,7 +29,7 @@ Row {
         AudioInputSelect { id: audioInputSelect }
     }
 
-    // ========== Center Section: Record Button & Timer ==========
+    // ========== 中间区域：录制按钮和计时器 ==========
     Column {
         width: recordButton.width
         spacing: 6
@@ -40,7 +40,7 @@ Row {
             onClicked: recording ? recorder.stop() : recorder.record()
         }
 
-        // Recording Time Display
+        // 录制时间显示
         Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             width: recordingTime.contentWidth + 20
@@ -54,7 +54,7 @@ Row {
                 anchors.centerIn: parent
                 font.pointSize: Style.fontSizeLarge
                 font.weight: Font.DemiBold
-                font.family: "Segoe UI, -apple-system, sans-serif"
+                font.family: "Microsoft YaHei UI, Segoe UI, sans-serif"
                 color: root.recorder.recorderState === MediaRecorder.RecordingState ?
                        Style.accent : Style.textSecondary
             }
@@ -63,12 +63,12 @@ Row {
         }
     }
 
-    // ========== Right Section: Option Buttons ==========
+    // ========== 右侧区域：选项按钮 ==========
     Column {
         id: optionButtons
         spacing: Style.intraSpacing
 
-        // Captures List Button
+        // 录制列表按钮
         Button {
             id: capturesBtn
             leftPadding: 16
@@ -110,17 +110,21 @@ Row {
                 text: "录制列表"
                 font.pointSize: Style.fontSize
                 font.weight: Font.Medium
-                font.family: "Segoe UI, -apple-system, sans-serif"
+                font.family: "Microsoft YaHei UI, Segoe UI, sans-serif"
                 color: "white"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
 
             hoverEnabled: true
+            ToolTip.visible: capturesBtn.hovered
+            ToolTip.text: "查看已录制的视频列表"
+            ToolTip.delay: 500
+
             onClicked: root.capturesVisible = !root.capturesVisible
         }
 
-        // Settings Button
+        // 设置按钮
         Button {
             id: settingsBtn
             leftPadding: 16
@@ -134,7 +138,6 @@ Row {
                 anchors.fill: parent
                 radius: Style.radiusMedium
 
-                // Use subtle style for settings button
                 color: settingsBtn.hovered || root.settingsVisible ?
                        Style.backgroundTertiary : Style.backgroundSecondary
 
@@ -160,7 +163,7 @@ Row {
                 text: "设置"
                 font.pointSize: Style.fontSize
                 font.weight: Font.Medium
-                font.family: "Segoe UI, -apple-system, sans-serif"
+                font.family: "Microsoft YaHei UI, Segoe UI, sans-serif"
                 color: root.settingsVisible ? Style.primary : Style.textPrimary
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -169,19 +172,29 @@ Row {
             Behavior on contentItem.color { ColorAnimation { duration: Style.animationFast } }
 
             hoverEnabled: true
+            ToolTip.visible: settingsBtn.hovered
+            ToolTip.text: "打开编码器和元数据设置"
+            ToolTip.delay: 500
+
             onClicked: settingsVisible = !settingsVisible
         }
     }
 
-    // ========== Timer for Recording Duration ==========
+    // ========== 录制时长计时器 ==========
     Timer {
         running: true
         interval: 100
         repeat: true
         onTriggered: {
-            var m = Math.floor(recorder.duration / 60000)
-            var ms = (recorder.duration / 1000 - m * 60).toFixed(1)
-            recordingTime.text = `${m}:${ms.padStart(4, '0')}`
+            var totalSeconds = Math.floor(recorder.duration / 1000)
+            var minutes = Math.floor(totalSeconds / 60)
+            var seconds = totalSeconds % 60
+            var centiseconds = Math.floor((recorder.duration % 1000) / 10)
+            
+            var timeText = String(minutes).padStart(2, '0') + ":" +
+                          String(seconds).padStart(2, '0') + "." +
+                          String(centiseconds).padStart(2, '0')
+            recordingTime.text = timeText
         }
     }
 }

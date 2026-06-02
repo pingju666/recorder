@@ -1,4 +1,4 @@
-// Copyright (C) 2021 The Qt Company Ltd.
+// 版权所有 (C) 2021 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
@@ -19,10 +19,10 @@ Item {
 
     signal clicked
 
-    // ========== Hover State ==========
+    // ========== 悬停状态 ==========
     property bool hovered: false
 
-    // ========== Pulse Animation (when recording) ==========
+    // ========== 脉冲动画（录制时） ==========
     SequentialAnimation on pulseScale {
         running: root.recording
         loops: Animation.Infinite
@@ -40,7 +40,7 @@ Item {
 
     property real pulseScale: 1.0
 
-    // ========== Outer Ring (Background) ==========
+    // ========== 外圈（背景） ==========
     Rectangle {
         id: outerRing
         anchors.centerIn: parent
@@ -48,24 +48,24 @@ Item {
         height: outerDiameter
         radius: outerRadius
 
-        // Gradient background
+        // 渐变背景
         gradient: Gradient {
             GradientStop { position: 0.0; color: Qt.lighter(Style.backgroundCard, 1.05) }
             GradientStop { position: 1.0; color: Style.backgroundSecondary }
         }
 
-        // Subtle border
+        // 细边框
         border.color: root.hovered ? Style.primaryLight : Style.borderDefault
         border.width: root.recording ? 2 : 1.5
 
-        // Shadow effect
+        // 阴影效果
         layer.enabled: true
 
         Behavior on border.color { ColorAnimation { duration: Style.animationNormal } }
         Behavior on border.width { NumberAnimation { duration: Style.animationFast } }
     }
 
-    // ========== Pulse Ring (visible when recording) ==========
+    // ========== 脉冲圈（录制时可见） ==========
     Rectangle {
         id: pulseRing
         anchors.centerIn: parent
@@ -74,7 +74,7 @@ Item {
         radius: width / 2
 
         visible: root.recording
-        opacity: 0.3 * (1.0 - (pulseScale - 1.0) * 4) // Fade out as it expands
+        opacity: 0.3 * (1.0 - (pulseScale - 1.0) * 4) // 扩大时淡出
         color: "transparent"
         border.color: Style.accent
         border.width: 3
@@ -82,7 +82,7 @@ Item {
         Behavior on opacity { NumberAnimation { duration: 100 } }
     }
 
-    // ========== Inner Button (the clickable part) ==========
+    // ========== 内圈（可点击部分） ==========
     Rectangle {
         id: innerButton
         anchors.centerIn: parent
@@ -90,7 +90,7 @@ Item {
         height: recording ? innerDiameter - 14 : innerDiameter
         radius: recording ? 6 : (width / 2)
 
-        // Recording state: red square, Idle state: red circle with gradient
+        // 录制状态：红色方块，空闲状态：带渐变的红色圆圈
         gradient: !recording ? Gradient {
             GradientStop { position: 0.0; color: Style.accentLight }
             GradientStop { position: 0.5; color: Style.accent }
@@ -99,7 +99,7 @@ Item {
 
         color: recording ? Style.accent : "transparent"
 
-        // Glow effect when hovering or recording
+        // 悬停或录制时的发光效果
         layer.enabled: root.hovered || root.recording
         layer.effect: Item {
             Rectangle {
@@ -108,7 +108,7 @@ Item {
                 radius: parent.radius + 4
                 color: "transparent"
                 opacity: root.recording ? 0.5 : 0.3
-                // Glow color
+                // 发光颜色
                 Rectangle {
                     anchors.fill: parent
                     radius: parent.radius
@@ -117,20 +117,20 @@ Item {
             }
         }
 
-        // Smooth transitions for shape change
+        // 形状变化的平滑过渡
         Behavior on width { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
         Behavior on height { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
         Behavior on radius { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
 
-        // Scale animation on press
+        // 按下时的缩放动画
         scale: mouseArea.pressed ? 0.92 : (root.hovered ? 1.05 : 1.0)
         Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
 
-        // ========== Icon/Indicator inside button ==========
+        // ========== 按钮内的图标/指示器 ==========
         Text {
             anchors.centerIn: parent
             visible: !root.recording
-            text: "\u25CF" // Circle character
+            text: "\u25CF" // 圆形字符
             font.pixelSize: parent.width * 0.45
             color: "white"
             opacity: 0.9
@@ -139,13 +139,13 @@ Item {
         Text {
             anchors.centerIn: parent
             visible: root.recording
-            text: "\u25A0" // Square character (stop)
+            text: "\u25A0" // 方块字符（停止符号）
             font.pixelSize: parent.width * 0.35
             color: "white"
             opacity: 0.95
         }
 
-        // ========== Mouse Interaction Area ==========
+        // ========== 鼠标交互区域 ==========
         MouseArea {
             id: mouseArea
             anchors.fill: parent
@@ -153,10 +153,14 @@ Item {
             onEntered: root.hovered = true
             onExited: root.hovered = false
             onClicked: root.clicked()
+            
+            ToolTip.visible: mouseArea.containsMouse
+            ToolTip.text: root.recording ? "点击停止录制" : "点击开始录制"
+            ToolTip.delay: 300
         }
     }
 
-    // ========== Status Indicator Dot (when recording) ==========
+    // ========== 状态指示点（录制时） ==========
     Rectangle {
         id: statusDot
         anchors {
@@ -170,7 +174,7 @@ Item {
         visible: root.recording
         color: Style.accent
 
-        // Blinking animation when recording
+        // 录制时的闪烁动画
         SequentialAnimation on opacity {
             running: root.recording
             loops: Animation.Infinite
